@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link rel="stylesheet" href="{% static 'css/book.css' %}">
+</head>
+<body>
+    <p>Hello from Books app</p>
+    <a href="{% url 'create-book' %}">Add new book</a>
+    <form form method="POST" action="{% url 'delete-bulk' %}" enctype="multipart/form-data">
+      {% csrf_token %}
+    <table>
+        <tr>
+          <th>id</th>
+          <th>Book name</th>
+          <th>book description</th>
+          <th>Price</th>
+          <th>Home page view</th>
+          <th>Book Photo</th>
+          <th>Actions</th>
+          <th>Delete group</th>
+        </tr>
+        {% for book in all_books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td>{{ book.name }}</a> </td>
+            <td>{{ book.description }}</td>
+            <td>{{ book.price }} $</td>
+            {% if book.isHome %} 
+            <td>viewed</td>
+             {% else %}
+            <td>hidden</td> 
+            {% endif %}
+            {%if book.photo %}
+            <td><img src= "{{ book.photo.url }}" style="max-height:150px; max-width:150px"></td>
+            {% else %}
+            <td>This book doesn not have photo</td>
+            {% endif %}
+            <td><a href="{% url 'delete-book' book.id %}">Delete </a>
+              <a href="{% url 'edit-book' book.id %}">Edit</a>
+            </td>
+            <td><input type="checkbox" name="book_id[]" value="{{book.pk}}"></td>
+        </tr>
+        {% endfor %}
+
+      </table>
+      <button type="submit" class="btn btn-danger" style="margin-left: 1370px; "> Delete All checked </button>
+    </form>
+</body>
+</html>

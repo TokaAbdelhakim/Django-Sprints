@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <h3 style="margin-top: 30px; margin-left: 50px;">Create Book Form</h3>
+    <div class="row m-5">
+        <div class="col-6">
+
+
+    <form method="POST" action="{% url 'save-book' %}" enctype="multipart/form-data" >
+        {% csrf_token %}
+        <div class="mb-3">
+            <label class="form-label">Book Name</label>
+           <input type="text" name="book_name" class="form-control"> 
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Book description</label>
+             <input type="text" name="book_desc" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Book price</label>
+           <input type="number" name="book_price" class="form-control">
+        </div>
+        <div class="mb-3">
+            <label class="form-label">Book photo</label>
+            <input type="file" name="book_photo" class="form-control" > 
+        </div>
+        <div class="mb-3 form-check">
+            <input type="checkbox" name="view" value="home" class="form-check-input">
+            <label class="form-check-label" for="exampleCheck1">Home Display</label>
+        </div>
+        <button type="submit" class="btn btn-primary"> Add Book </button>
+    </form>
+</div>
+</div>
+</body>
+</html> 
