@@ -1,5 +1,8 @@
+from django.db import models
 from django.shortcuts import redirect, render
-from .models import Product
+from django.urls.base import clear_script_prefix
+from django.views.generic.edit import CreateView
+from .models import Category, Product
 from .forms import  PostForm, EditForm
 from django.views.generic import UpdateView
 # Create your views here.
@@ -35,7 +38,10 @@ class edit_product (UpdateView):
     form_class = EditForm
     template_name = 'edit.html'
     
-
+class Addcategory (CreateView):
+    model = Category
+    template_name = 'cat.html'
+    fields = '__all__'
 
 ''''
  def add_product(request):

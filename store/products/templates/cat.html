@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Add Product</title>
-    {% load static %}
+    {%load static%}
     <!-- Mystyle -->
     <!-- CSS only -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
@@ -36,8 +36,8 @@
           <a href="{% url 'add-products' %}" class="nav-link">Add products</a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="{% url 'add-category' %}" class="nav-link">Add category</a>
-        </li>
+            <a href="{% url 'add-category' %}" class="nav-link">Add category</a>
+          </li>
       </ul>
           <!-- Right navbar links -->
     <ul class="navbar-nav ml-auto">
@@ -164,22 +164,14 @@
       <div class="col-md-6">
           <div class="card card-primary">
             <div class="card-header g-3">
-              <h3 class="card-title">Edit product</h3>
+              <h3 class="card-title">Add Category</h3>
           </div>
         <div class="col-md-9 ml-5 ">
-          <form method="post" enctype="multipart/form-data">   
+          <form method="post" enctype="multipart/form-data" class="m-3">   
           {% csrf_token %}
           {{ form.media }}
           {{ form.as_p }}
-          {% if not product.image %}
-          <p>No image </p> 
-          {% else %}
-          <label>Find yor last image: </label> <br>
-          <img  src = "{{product.image.url}}" style="height: 150px; width: 150px;"><br><br>
-          {% endif %}
-          
-
-          <button type="submit" class="btn btn-primary m-3">Update</button>
+          <button type="submit" class="btn btn-primary m-3">ADD</button>
    </form>
   </div>
   </div>
