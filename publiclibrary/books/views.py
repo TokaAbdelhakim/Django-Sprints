@@ -8,7 +8,6 @@ from django.views.generic import ListView
 def home(request):
     # list books from DB
     books = Book.objects.all()
-    #books = Book.objects.filter(isHome=1)
     # render books on the thml page
     return render(request, 'book/index.html', {
         'all_books' : books
@@ -19,9 +18,8 @@ def home(request):
 def read(request):
     return HttpResponse('Hello from Read page.')
 
-
 def index(request):
-    books = Book.objects.all()
+    books = Book.objects.filter(isHome=1)
     return render(request, 'home/index.html', {
         'all_books' : books
     })
@@ -58,8 +56,6 @@ def save_book(request):
             return redirect('book-list')
 
     return HttpResponse('invalid request')
-
-
 
 def edit_book(request, book_id):
     # get book old data from db:

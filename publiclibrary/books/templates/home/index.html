@@ -221,8 +221,12 @@
         {% for book in all_books %}
         <div class="col-sm-6 col-lg-4">
           <div class="box">
-            <div class="img-box">
-              <img src="{% static 'images/p1.png' %}" alt="">
+            <div class="img-box">             
+              {% if book.photo %}
+                <img src="{{book.photo.url}}" alt="">
+              {% else %}
+              <img src="{% static 'images/download.png'%}" alt="">
+              {% endif %}
               <a href="" class="add_cart_btn">
                 <span>
                   Add To Cart
@@ -281,11 +285,13 @@
             </a>
           </div>
         </div>
+    
         <div class="col-md-6 px-0">
           <div class="img-box">
-            <img src="images/about-img.jpg" alt="">
+            <img src="{% static 'images/slider-img.png' %}" alt="">
           </div>
         </div>
+        
       </div>
     </div>
   </section>
