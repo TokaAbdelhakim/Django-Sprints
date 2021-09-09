@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit book</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+</head>
+<body>
+    <h3 style="margin-top: 30px; margin-left: 50px;">Edit Book Form</h3>
+    <form method="POST" action="{% url 'save-edit' book_data.pk %}">
+        <div class="row m-5">
+            <div class="col-6">
+    
+    
+        <form method="POST" action="{% url 'save-book' %}" enctype="multipart/form-data" >
+            {% csrf_token %}
+            <div class="mb-3">
+                <label class="form-label">Book Name</label>
+               <input type="text" name="book_name" class="form-control" value="{{book_data.name}}"> 
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Book description</label>
+                 <input type="text" name="book_desc" class="form-control" value="{{book_data.description}}">
+            </div>
+            <div class="mb-3">
+                <label class="form-label">Book price</label>
+               <input type="number" name="book_price" class="form-control" value="{{book_data.price}}">
+            </div>
+            <div class="mb-3">
+                {% if book_data.photo %}
+                <label class="form-label">Book last photo</label><br> <br>
+                <img src = "{{book_data.photo.url}}" style=" height:150px; width:150px; "> <br> <br>
+                {% endif %}
+                <label class="form-label">Book photo</label>
+                <input type="file" name="book_photo" class="form-control"> 
+            </div>
+            <div class="mb-3 form-check">
+                {%  if book_data.isHome %}
+                <input type="checkbox" name="view" checked class="form-check-input">
+                {% else %}
+                <input type="checkbox" name="view"  class="form-check-input">
+                {% endif %}
+                <label class="form-check-label" for="exampleCheck1">Home Display</label>
+            </div>
+            <button type="submit" class="btn btn-primary"> Update Book </button>
+        </form>
+    </div>
+    </div>
+
+</body>
+</html>
